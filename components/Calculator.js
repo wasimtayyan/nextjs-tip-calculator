@@ -84,7 +84,9 @@ const Calculator = () => {
                             </button>
                             <button onClick={() => handleTipAmount(50)} className="body-l-text input-tip" id="tip50">50%
                             </button>
+
                             <input onChange={(e) => handleTipAmount(e.target.value)}  type="number" className="body-l-text input-field" placeholder="Custom"
+
                                 id="totalTipPercentage"></input>
                         </div>
                     </div>
