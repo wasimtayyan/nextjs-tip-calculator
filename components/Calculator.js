@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const Calculator = () => {
     // TODO: start coding here!
     //use state to keep tracking valus
-    const [billInput, setBillInput] = useState(null);
+    const [billInput, setBillInput] = useState(0);
     const [tipPercentage, setTipPercentage] = useState(0);
     const [numberOfPeople, setNumberOfPeople] = useState(1);
     const [tipAmount, setTipAmount] = useState(0);
@@ -11,25 +11,25 @@ const Calculator = () => {
 
     //functions to handle clicks & changes
     const handleAmontOfBill = (e) => {
-        setBillInput(e.target.value)
+        const bill = e.target.value 
+        setBillInput(bill)
+        calculat(bill,tipPercentage,numberOfPeople)
         
     }
     const handleTipAmount = (percentage) => {
-        setTipPercentage(percentage)
-        
-    }
-    const handleTipInput = (e) => {
-        setTipInput(e.target.value)
-        
+        const tip = percentage
+        setTipPercentage(tip)
+        calculat(billInput, tip, numberOfPeople)
     }
     const handleNumOfPeople = (e) => {
-        setNumberOfPeople(e.target.value)
-        
+        const people = e.target.value
+        setNumberOfPeople(people)
+        calculat(billInput, tipPercentage, people)
     }
 
     //calculat  tip & total
 
-    const calculat = () => {
+    const calculat = (billInput,tipPercentage,numberOfPeople) => {
         const tipPerPerson = billInput *( tipPercentage / 100)/numberOfPeople
         const totalPerPerson = (billInput / numberOfPeople) + tipPerPerson
         setTipAmount(tipPerPerson.toFixed(2))
@@ -84,9 +84,9 @@ const Calculator = () => {
                             </button>
                             <button onClick={() => handleTipAmount(50)} className="body-l-text input-tip" id="tip50">50%
                             </button>
-                            <button onClick={() => calculat()} className="body-l-text input-tip" id="tip50">result
-                            </button>
-                            <input onChange={(e) => handleTipAmount(e.target.value)} value = {tipPercentage} type="number" className="body-l-text input-field" placeholder="Custom"
+
+                            <input onChange={(e) => handleTipAmount(e.target.value)}  type="number" className="body-l-text input-field" placeholder="Custom"
+
                                 id="totalTipPercentage"></input>
                         </div>
                     </div>
